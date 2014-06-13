@@ -1,7 +1,8 @@
 Unix Account
 ============
 
-Python module to manipulate unix system accounts
+Python module to manipulate unix system accounts by calling standard unix
+commands user{add,mod,del} which do the actual system files manipulation.
 
 Locations
 ---------
@@ -19,8 +20,15 @@ If you find something wrong or know of a missing feature, please
 page. If you find that inconvenient or have some security concerns, you could
 also drop me a line at <devel@beli.sk>.
 
-Usage
------
+Install
+-------
+
+::
+
+    pip install unixaccount
+
+Contents
+--------
 
 CLASSES
 ~~~~~~~
@@ -55,4 +63,25 @@ FUNCTIONS
         
     get_username(uid)
         Return user name for given numeric user ID or raise NotFound exception
+
+
+License
+-------
+
+Copyright 2014 Michal Belica <devel@beli.sk>
+
+::
+
+    Unix Account is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    
+    Unix Account is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with Unix Account.  If not, see < http://www.gnu.org/licenses/ >.
 
