@@ -46,7 +46,7 @@ FUNCTIONS
 
 ::
 
-    create_user(username, group=None, homedir=None, password=None, mkhome=False, shell='/bin/false')
+    create_user(username, group=None, homedir=None, password=None, mkhome=False, shell=None)
         Create a new user account
         
     delete_user(username)

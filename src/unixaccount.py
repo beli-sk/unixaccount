@@ -26,8 +26,6 @@ import grp
 
 logger = logging.getLogger(__name__)
 
-DEFAULT_SHELL="/bin/false"
-
 class UnixAccountError(Exception): pass
 class AlreadyExists(UnixAccountError): pass
 class NotFound(UnixAccountError): pass
@@ -74,7 +72,7 @@ def modify_user(username, group=None, homedir=None, password=None,
         raise
 
 def create_user(username, group=None, homedir=None, password=None,
-        mkhome=False, shell=DEFAULT_SHELL):
+        mkhome=False, shell=None):
     """Create a new user account"""
     args = ['/usr/sbin/useradd']
     group and args.extend(['-g', group])
