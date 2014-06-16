@@ -4,6 +4,8 @@ Unix Account
 Python module to manipulate unix system accounts by calling standard unix
 commands user{add,mod,del} which do the actual system files manipulation.
 
+Uses ``sudo`` to run the commands if not root (EUID not 0).
+
 Locations
 ---------
 

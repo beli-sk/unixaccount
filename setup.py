@@ -36,7 +36,7 @@ setup(
     author='Michal Belica',
     author_email='devel@beli.sk',
     include_package_data=True,
-    zip_safe=False,
+    zip_safe=True,
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',

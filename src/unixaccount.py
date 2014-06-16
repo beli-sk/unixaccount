@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
 import subprocess
 import crypt
 import random
@@ -25,6 +26,9 @@ import pwd
 import grp
 
 logger = logging.getLogger(__name__)
+
+SUDO = "/usr/bin/sudo"
+TOOLSDIR = "/usr/sbin/"
 
 class UnixAccountError(Exception): pass
 class AlreadyExists(UnixAccountError): pass
@@ -42,7 +46,10 @@ def _crypt_pwd(password):
 def modify_user(username, group=None, homedir=None, password=None,
         mkhome=False, shell=None):
     """Modify existing user account."""
-    args = ['/usr/sbin/usermod']
+    args = []
+    if os.geteuid() != 0:
+        args.append(SUDO)
+    args.append('%susermod' % TOOLSDIR)
     group and args.extend(['-g', group])
     shell and args.extend(['-s', shell])
     homedir and args.extend(['-d', homedir])
@@ -74,7 +81,10 @@ def modify_user(username, group=None, homedir=None, password=None,
 def create_user(username, group=None, homedir=None, password=None,
         mkhome=False, shell=None):
     """Create a new user account"""
-    args = ['/usr/sbin/useradd']
+    args = []
+    if os.geteuid() != 0:
+        args.append(SUDO)
+    args.append('%suseradd' % TOOLSDIR)
     group and args.extend(['-g', group])
     shell and args.extend(['-s', shell])
     homedir and args.extend(['-d', homedir])
@@ -105,8 +115,13 @@ def create_user(username, group=None, homedir=None, password=None,
 
 def delete_user(username):
     """Delete user account."""
+    args = []
+    if os.geteuid() != 0:
+        args.append(SUDO)
+    args.append('%suserdel' % TOOLSDIR)
+    args.append(username)
     try:
-        subprocess.check_call(['/usr/sbin/userdel', username], shell=False)
+        subprocess.check_call(args, shell=False)
     except subprocess.CalledProcessError as e:
         code = e.returncode
         useradd_errors = {
