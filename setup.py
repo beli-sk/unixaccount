@@ -28,7 +28,7 @@ def read(*names, **kwargs):
 
 setup(
     name="unixaccount",
-    version="0.1.0",
+    version="0.1.1",
     url='https://github.com/beli-sk/unixaccount',
     license='GPL',
     description="Python module to manipulate unix system accounts.",
